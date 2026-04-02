@@ -1,0 +1,18 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: log
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://localhost:3306/log_project?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:    #????????
+    show-sql: true     #????????sql??
+    hibernate:
+      ddl-auto: update #???????????????
