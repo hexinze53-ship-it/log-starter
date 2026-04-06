@@ -40,7 +40,8 @@
       ▼
 (拦截器 Interceptor) ──▶ 生成 UUID，写入 ThreadLocal (MDC)
       │
-      ▼[Controller / Service 业务代码] ──▶ 正常响应前端 (毫秒级返回)
+      ▼
+[Controller / Service 业务代码] ──▶ 正常响应前端 (毫秒级返回)
       │
       ▼
 (@Log AOP 环绕拦截) ──▶ 提取方法签名、入参、IP，从 MDC 提取 TraceId
@@ -50,9 +51,11 @@
       │
       ▼ (后台 Daemon 线程 poll 阻塞等待)[List<Syslog> 批处理卡车] ──▶ 满足条件 (满200条 或 超时5s)
       │
-      ▼ (JDBC Batch Insert)
-[MySQL Database]
-🚀 快速开始 (Quick Start)
+      ▼ (JDBC Batch Insert)[MySQL Database]
+
+---
+
+##🚀 快速开始 (Quick Start)
 1. 引入依赖 (通过 JitPack)
 在你的 Spring Boot 项目的 pom.xml 中添加：
 <repositories>
@@ -69,7 +72,10 @@
         <version>v1.0</version>
     </dependency>
 </dependencies>
-2. 添加数据库配置
+
+---
+
+##2. 添加数据库配置
 确保你的 application.yaml 中包含以下配置（组件内置 JPA，将自动生成 sys_log 表）：
 spring:
   datasource:
@@ -83,7 +89,10 @@ spring:
       hibernate:
         jdbc:
           batch_size: 200 # 开启 JPA 底层批处理
-3. 一键使用
+
+---
+
+##3. 一键使用
 在任意 Controller 或 Service 方法上添加注解
 @Log("新增用户订单")
 @PostMapping("/create")
